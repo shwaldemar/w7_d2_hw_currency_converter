@@ -4,23 +4,32 @@ document.addEventListener("DOMContentLoaded", () => {
   new Vue({
     el: "#app",
     data: {
-      rates: {
-        currency:{},
-        rate:{}
+      exchangeRates: {},
+      selectedCurrency: null,
+      selectedRate: null,
+      baseRate: 1,
+      conversionType: ""
+    },
+    mounted(){
+      this.getExchangeRates()
+    },
+    computed: {
+      toEuros: function(){
+        return (this.baseRate * this.selectedCurrencyRate);
+      },
+      fromEuros: function(){
+        (this.baseRate * this.selectedCurrencyRate);
+      },
+      selectedCurrencyRate: function() {
+        return this.exchangeRates[this.selectedCurrency]
       }
     },
-
-    mounted(){
-      this.getRates()
-    },
     methods: {
-      getRates: function(){
+      getExchangeRates: function(){
         fetch("https://api.exchangeratesapi.io/latest")
         .then(res => res.json())
-        .then(rates => this.rates = rates)
-      },
-
-
+        .then(exchangeRates => this.exchangeRates = exchangeRates.rates)
+      }
     }
   }
 )}

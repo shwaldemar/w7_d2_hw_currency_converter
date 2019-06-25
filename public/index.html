@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Vue Currency Coverter</title>
-    <script src="js/bundle.js">
+<head>
+  <meta charset="utf-8">
+  <title>Vue Currency Coverter</title>
+  <script src="js/bundle.js">
 
-    </script>
-  </head>
+  </script>
+</head>
 
 
-  <body>
-    <div id="app">
-      <h2>Exchange Rates: {{ rates }}<h2>
+<body>
+  <div id="app">
+    <h2>Currency Converter<h2>
 
-    </div>
+      <!-- <ul v-for="(value, name) in exchangeRates">
+      <li>
+      {{name}} : {{value}}
+      </li>
+    /ul> -->
 
-  </body>
+  <label for="selectCurrency">Select a Currency:</label>
+  <select id="selectCurrency">
+    <option  v-for="(value, name) in exchangeRates" :value="name">{{name}}</option>
+  </select>
+
+
+</div>
+
+</body>
 </html>
